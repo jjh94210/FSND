@@ -1,0 +1,204 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.0
+-- Dumped by pg_dump version 13.0
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: alembic_version; Type: TABLE; Schema: public; Owner: jaehwi
+--
+
+CREATE TABLE public.alembic_version (
+    version_num character varying(32) NOT NULL
+);
+
+
+ALTER TABLE public.alembic_version OWNER TO jaehwi;
+
+--
+-- Name: cuisine; Type: TABLE; Schema: public; Owner: jaehwi
+--
+
+CREATE TABLE public.cuisine (
+    id integer NOT NULL,
+    type character varying
+);
+
+
+ALTER TABLE public.cuisine OWNER TO jaehwi;
+
+--
+-- Name: cuisine_id_seq; Type: SEQUENCE; Schema: public; Owner: jaehwi
+--
+
+CREATE SEQUENCE public.cuisine_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cuisine_id_seq OWNER TO jaehwi;
+
+--
+-- Name: cuisine_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: jaehwi
+--
+
+ALTER SEQUENCE public.cuisine_id_seq OWNED BY public.cuisine.id;
+
+
+--
+-- Name: ourhome; Type: TABLE; Schema: public; Owner: jaehwi
+--
+
+CREATE TABLE public.ourhome (
+    id integer NOT NULL,
+    menu character varying,
+    description character varying,
+    cuisine character varying,
+    preference integer
+);
+
+
+ALTER TABLE public.ourhome OWNER TO jaehwi;
+
+--
+-- Name: ourhome_id_seq; Type: SEQUENCE; Schema: public; Owner: jaehwi
+--
+
+CREATE SEQUENCE public.ourhome_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.ourhome_id_seq OWNER TO jaehwi;
+
+--
+-- Name: ourhome_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: jaehwi
+--
+
+ALTER SEQUENCE public.ourhome_id_seq OWNED BY public.ourhome.id;
+
+
+--
+-- Name: cuisine id; Type: DEFAULT; Schema: public; Owner: jaehwi
+--
+
+ALTER TABLE ONLY public.cuisine ALTER COLUMN id SET DEFAULT nextval('public.cuisine_id_seq'::regclass);
+
+
+--
+-- Name: ourhome id; Type: DEFAULT; Schema: public; Owner: jaehwi
+--
+
+ALTER TABLE ONLY public.ourhome ALTER COLUMN id SET DEFAULT nextval('public.ourhome_id_seq'::regclass);
+
+
+--
+-- Data for Name: alembic_version; Type: TABLE DATA; Schema: public; Owner: jaehwi
+--
+
+COPY public.alembic_version (version_num) FROM stdin;
+\.
+
+
+--
+-- Data for Name: cuisine; Type: TABLE DATA; Schema: public; Owner: jaehwi
+--
+
+COPY public.cuisine (id, type) FROM stdin;
+1	Korean
+2	Western
+3	Chinese
+4	Japanese
+5	Halal
+\.
+
+
+--
+-- Data for Name: ourhome; Type: TABLE DATA; Schema: public; Owner: jaehwi
+--
+
+COPY public.ourhome (id, menu, description, cuisine, preference) FROM stdin;
+1	ginseng chicken soup	Ginseng (kor. sam) - chicken (kor. gye) - soup (kor. tang) in Korean, consists primarily of a whole young chicken (poussin) - filled with garlic, rice, jujube, and ginseng.	1	5
+4	Meatball	A meatball is ground meat rolled into a small ball, sometimes along with other ingredients, such as bread crumbs, minced onion, eggs, butter, and seasoning.	2	3
+5	Steak	A steak is a meat generally sliced across the muscle fibers, potentially including a bone. It is normally grilled, though can also be pan-fried.	2	1
+6	Pasta	Pasta is a type of food typically made from an unleavened dough of wheat flour mixed with water or eggs, and formed into sheets or other shapes, then cooked by boiling or baking.	2	2
+7	Jajangmyeon	Jajangmyeon is a Chinese-style Korean noodle dish topped with a thick sauce made of chunjang, diced pork, and vegetables.	3	1
+8	Tangsuyuk	Tangsuyuk is a Korean Chinese meat dish with sweet and sour sauce. It can be made with either pork or beef.	3	3
+9	Jjamppong	Jjamppong is a Korean noodle soup with red, spicy seafood- or pork-based broth flavored with gochugaru (chili powder). Common ingredients include onions, garlic, Korean zucchini, carrots, cabbages, squid, mussels, and pork.	3	4
+10	Ramen	Ramen is a Japanese noodle soup. It consists of Chinese wheat noodles served in a meat or (occasionally) fish-based broth, often flavored with soy sauce or miso, and uses toppings such as sliced pork, nori (dried seaweed), menma, and scallions.	4	2
+11	Soba	Soba is the Japanese name for buckwheat. It usually refers to thin noodles made from buckwheat flour, or a combination of buckwheat and wheat flours (Nagano soba). They contrast to thick wheat noodles, called udon. Soba noodles are served either chilled with a dipping sauce, or in hot broth as a noodle soup.	4	1
+12	Udon	Udon is a type of thick, wheat-flour noodle used frequently in Japanese cuisine. It is often served hot as a noodle soup in its simplest form, as kake udon, in a mildly flavoured broth called kakejiru, which is made of dashi, soy sauce, and mirin.	4	1
+13	Kebab	Kebabs are various cooked meat dishes, with their origins in Middle Eastern cuisine. Many variants are popular around the world. In most English-speaking countries, a kebab may be the classic shish kebab or shashlik – small cubes of meat cooked on a skewer – or, outside of North America where it is better known as gyros, the more recent and now-ubiquitous fast-food doner kebab.	5	5
+14	Curry	Curry is a variety of dishes originating in the Indian subcontinent that use a complex combination of spices or herbs, usually including ground turmeric, cumin, coriander, ginger, and fresh or dried chilies. In southern India, where the word originated, curry leaves, from the curry tree, are also an integral ingredient. Curry is generally prepared in a sauce.	5	3
+15	Biryani	Biryani is a mixed rice dish with its origins among the Muslims of the Indian subcontinent. It is made with Indian spices, rice, and meat (chicken, beef, goat, pork, lamb, prawn, or fish), and sometimes, in addition, eggs and/or potatoes in certain regional varieties.	5	4
+2	grilled pork belly (Samgyeopsal)	Thick, fatty slices of pork belly, sometimes with the skin left on and sometimes scored on the diagonal, are grilled on a slanted metal griddle or a gridiron at the diners table, inset with charcoal grills or convex gas burners.	1	5
+3	beef bone soup (Gomguk)	Ox leg bone soup simmered for more than 10 hours until the soup is milky-white. Usually served in a bowl containing somyeon (thin wheat flour noodles) and pieces of beef. Sliced scallions and black pepper are used as condiments. Sometimes served with rice instead of noodles.	1	1
+\.
+
+
+--
+-- Name: cuisine_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jaehwi
+--
+
+SELECT pg_catalog.setval('public.cuisine_id_seq', 1, false);
+
+
+--
+-- Name: ourhome_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jaehwi
+--
+
+SELECT pg_catalog.setval('public.ourhome_id_seq', 16, true);
+
+
+--
+-- Name: alembic_version alembic_version_pkc; Type: CONSTRAINT; Schema: public; Owner: jaehwi
+--
+
+ALTER TABLE ONLY public.alembic_version
+    ADD CONSTRAINT alembic_version_pkc PRIMARY KEY (version_num);
+
+
+--
+-- Name: cuisine cuisine_pkey; Type: CONSTRAINT; Schema: public; Owner: jaehwi
+--
+
+ALTER TABLE ONLY public.cuisine
+    ADD CONSTRAINT cuisine_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ourhome ourhome_pkey; Type: CONSTRAINT; Schema: public; Owner: jaehwi
+--
+
+ALTER TABLE ONLY public.ourhome
+    ADD CONSTRAINT ourhome_pkey PRIMARY KEY (id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
